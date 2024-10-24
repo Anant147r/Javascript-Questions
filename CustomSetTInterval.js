@@ -1,3 +1,6 @@
+// const globalObj = window !== undefined ? window : global;
+// console.log(globalObj);
+
 (function (window) {
   let interval = {};
   window.setInterval = function (fun, delay) {
@@ -13,7 +16,7 @@
       }
       // Dont know why we are making rndId as key in the interval object
       interval[rndId].push(id);
-      console.log(rndId, interval[rndId]);
+      //   console.log(rndId, interval[rndId]);
     };
 
     execute();
@@ -22,19 +25,19 @@
   };
 
   window.clearInterval = function (rid) {
-    console.log("Rid and Interval", rid, interval);
+    // console.log("Rid and Interval", rid, interval);
     while (interval[rid].length > 0) {
-      console.log(interval[rid]);
+      //   console.log(interval[rid]);
       clearTimeout(interval[rid].pop());
     }
   };
-})(window);
+})(global);
 
 const pid = setInterval(() => {
   console.log("Hello world");
 }, 2000);
 
-console.log("PID", pid);
+// console.log("PID", pid);
 
 setTimeout(() => {
   clearInterval(pid);
