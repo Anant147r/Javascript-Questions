@@ -11,9 +11,15 @@ export type TokenType =
   | "False"
   | "Null";
 
-//And a token object would look like this
-
 export interface Token {
   type: TokenType;
   value: string;
 }
+
+export type ASTNode =
+  | { type: "Object"; value: { [key: string]: ASTNode } }
+  | { type: "Array"; value: ASTNode[] }
+  | { type: "String"; value: string }
+  | { type: "Number"; value: number }
+  | { type: "Boolean"; value: boolean }
+  | { type: "Null" };
