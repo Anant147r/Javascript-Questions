@@ -1,5 +1,5 @@
-import { tokenizer } from "./Custom Parse Json/tokenizer";
-import { ASTNode, Token } from "./Custom Parse Json/types";
+import { tokenizer } from "./tokenizer";
+import { ASTNode, Token } from "./types";
 
 //parser.ts
 export const parser = (tokens: Token[]): ASTNode => {
