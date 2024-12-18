@@ -8,7 +8,7 @@ function asyncTask1() {
       console.log("Function 1 resolved");
       //   resolve();
       resolve();
-    }, 4000);
+    }, 1000);
   });
 }
 
@@ -17,7 +17,7 @@ function asyncTask2() {
     setTimeout(() => {
       console.log("Function 2 resolved");
       resolve();
-    }, 6000);
+    }, 1000);
   });
 }
 
@@ -29,50 +29,37 @@ runTasksInSeries([asyncTask1, asyncTask2])
     console.log(err);
   });
 
-// console.log(runTasksInSeries([asyncTask2, asyncTask1]));
+//   Second version with returned promise     IMPORTANT
 
-// async function runTasksInSeries(tasks) {
-//   for (let task of tasks) {
-//     await task();
+//   async function function1() {
+//     return new Promise((resolve) => {
+//       setTimeout(() => {
+//         resolve("Function1 resolved");
+//       }, 5000);
+//     });
 //   }
-// }
 
-// Example asynchronous tasks
-// function asyncTask1() {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       console.log("Async task 1 completed");
-//       resolve();
-//     }, 1000);
-//   });
-// }
+//   async function function2() {
+//     return new Promise((resolve) => {
+//       setTimeout(() => {
+//         resolve("Function 2 resolved");
+//       }, 2000);
+//     });
+//   }
 
-// function asyncTask2() {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       console.log("Async task 2 completed");
-//       resolve();
-//     }, 2000);
-//   });
-// }
+//   async function resolver(taskList) {
+//     return new Promise(async (resolve) => {
+//       resolvedValues = [];
+//       for (let task of taskList) {
+//         const val = await task();
+//         console.log("hello");
+//         resolvedValues.push(val);
+//         if (resolvedValues.length === 2) resolve(resolvedValues);
+//       }
 
-// function asyncTask3() {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       console.log("Async task 3 completed");
-//       resolve();
-//     }, 1500);
-//   });
-// }
+//       // taskList.forEach(async (task) => {
+//       //    });
+//     });
+//   }
 
-// // Define your tasks in an array
-// const tasks = [asyncTask1, asyncTask2, asyncTask3];
-
-// // Run the tasks in series
-// runTasksInSeries(tasks)
-//   .then(() => {
-//     console.log("All tasks completed");
-//   })
-//   .catch((error) => {
-//     console.error("Error occurred:", error);
-//   });
+//   resolver([function1, function2]).then((value) => console.log(value));
